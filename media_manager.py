@@ -15,7 +15,7 @@ class MediaManager:
         self.cur_tracks = self.pick_track()
 
     def load_files(self, path):
-        files = [f for f in listdir(path) if isfile(join(path, f))]
+        files = [join(path,f) for f in listdir(path) if isfile(join(path, f))]
         files.sort()
         print(f'{len(files)} files were loaded from {path}')
         return files

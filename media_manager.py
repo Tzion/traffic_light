@@ -2,6 +2,7 @@ from os import listdir
 from os.path import isfile, join
 from traffic_light import Color
 import random
+import pygame
 
 MEDIA_LIB = "./media"
 
@@ -36,8 +37,12 @@ class MediaManager:
 class RaspberyPlayer():
     
     def play_track(track):
-        # TODO replace with raspbery implementation
         print(f'playing track {track}')
+        pygame.mixer.init()
+        pygame.mixer.music.load(track)
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy():
+            continue
         pass
             
 

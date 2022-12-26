@@ -13,6 +13,8 @@ class TrafficLight:
     def __init__(self, initialColor=Color.RED):
         self.color = initialColor
         GPIO.setmode(GPIO.BCM)
+        GPIO.setup(RED_PIN, GPIO.OUT)
+        GPIO.setup(GREEN_PIN, GPIO.OUT)
     
     
     def set_color(self, color: Color):

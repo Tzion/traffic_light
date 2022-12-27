@@ -13,6 +13,7 @@ def run_flow():
     while True:
         play_red()
         play_green()
+        traffic_light.set_color(Color.RED)
         halt()
 
 def play_red():

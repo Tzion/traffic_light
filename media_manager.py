@@ -33,6 +33,7 @@ class MediaManager:
             RaspberyPlayer.play_track(track)
         except Exception as e:
             print(e)
+            self.cur_tracks = self.pick_track()
         
         
 

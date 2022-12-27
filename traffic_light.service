@@ -1,0 +1,10 @@
+[Unit]
+Description=Service that runs the traffic light flow for Burnurot
+
+[Service]
+WorkingDirectory=$HOME/traffic_light
+ExecStart=/bin/bash -c 'cd $HOME/traffic_light && source venv/bin/activate && python3 flow_manager.py'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

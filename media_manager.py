@@ -29,6 +29,8 @@ class MediaManager:
         try:
             track = self.cur_tracks[color.value]
             RaspberyPlayer.play_track(track)
+            if color == Color.GREEN:
+                self.cur_tracks = self.pick_track()
         except Exception as e:
             print(e)
         

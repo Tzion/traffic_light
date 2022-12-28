@@ -2,8 +2,8 @@ from enum import Enum
 import RPi.GPIO as GPIO
 import time
 
-RED_PIN = 3
-GREEN_PIN = 5
+RED_PIN = 2
+GREEN_PIN = 3
 
 class Color(Enum):
     RED = 0

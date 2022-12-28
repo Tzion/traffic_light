@@ -20,7 +20,7 @@ class MediaManager:
     
     def play(self, color: Color):
         try:
-            if color == Color.RED:
+            if color == Color.GREEN:
                 track = random.sample(self.greens, 1)
             else:
                 track = random.sample(self.reds, 1)

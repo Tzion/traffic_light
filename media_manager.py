@@ -21,9 +21,9 @@ class MediaManager:
     def play(self, color: Color):
         try:
             if color == Color.GREEN:
-                track = random.sample(self.greens, 1)
+                track = random.sample(self.greens, 1)[0]
             else:
-                track = random.sample(self.reds, 1)
+                track = random.sample(self.reds, 1)[0]
             RaspberyPlayer.play_track(track)
         except Exception as e:
             print(e)

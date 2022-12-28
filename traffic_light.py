@@ -1,5 +1,6 @@
 from enum import Enum
 import RPi.GPIO as GPIO
+import time
 
 RED_PIN = 3
 GREEN_PIN = 5
@@ -15,7 +16,17 @@ class TrafficLight:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(RED_PIN, GPIO.OUT)
         GPIO.setup(GREEN_PIN, GPIO.OUT)
+        self.test_all_gpios()
     
+    def test_all_gpios(self):
+        for pin in range(0,20):
+            GPIO.setup(pin, GPIO.OUT)
+            GPIO.setup(pin)
+            GPIO.output(pin, 1)
+            print(f'pin {pin} is on')
+            time.sleep(0.4)
+            GPIO.output(pin,0) 
+        
     
     def set_color(self, color: Color):
         print(f'setting color to {color})')

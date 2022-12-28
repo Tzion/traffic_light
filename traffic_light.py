@@ -16,7 +16,7 @@ class TrafficLight:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(RED_PIN, GPIO.OUT)
         GPIO.setup(GREEN_PIN, GPIO.OUT)
-        self.test_all_gpios()
+        # self.test_all_gpios()
     
     def test_all_gpios(self):
         for pin in range(0,20):

@@ -21,7 +21,6 @@ class TrafficLight:
     def test_all_gpios(self):
         for pin in range(0,20):
             GPIO.setup(pin, GPIO.OUT)
-            GPIO.setup(pin)
             GPIO.output(pin, 1)
             print(f'pin {pin} is on')
             time.sleep(0.4)

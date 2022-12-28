@@ -26,8 +26,8 @@ class MediaManager:
                 track = random.sample(self.reds, 1)
             RaspberyPlayer.play_track(track)
         except Exception as e:
-            RaspberyPlayer.stop_track(track)
             print(e)
+            RaspberyPlayer.stop_track(track)
         
         
 

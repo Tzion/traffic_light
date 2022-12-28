@@ -35,8 +35,10 @@ class TrafficLight:
 def set_gpios(color_on):
     if color_on == Color.RED:
         GPIO.output(RED_PIN, GPIO.HIGH)
+        time.sleep(0.4)
         GPIO.output(GREEN_PIN, GPIO.LOW)
     if color_on == Color.GREEN:
         GPIO.output(GREEN_PIN, GPIO.HIGH)
+        time.sleep(0.4)
         GPIO.output(RED_PIN, GPIO.LOW)
         

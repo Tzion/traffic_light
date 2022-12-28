@@ -25,8 +25,7 @@ def play_green():
     media_manager.play(Color.GREEN)
 
 def halt():
-    one_to_six_minutes_delay = 60 + random.random() * 5 * 60
-    delay_sec = one_to_six_minutes_delay
+    delay_sec = random.random() * 3 * 60
     print(f'sleeping for {delay_sec:.2f} seconds')
     time.sleep(delay_sec)
     

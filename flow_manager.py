@@ -1,5 +1,6 @@
 from media_manager import MediaManager
 from traffic_light import Color, TrafficLight
+from distance_sensor import wait_till_detection, sensor_works
 import random
 import time
 
@@ -10,11 +11,28 @@ def setup():
     media_manager = MediaManager()
 
 def run_flow():
+    if sensor_works():
+        run_flow_with_sensor()
+    else:
+        run_flow_no_sensor()
+
+def run_flow_no_sensor():
+    play_red()
+    play_green()
+    traffic_light.set_color(Color.RED)
+    halt()
+
+def run_flow_with_sensor():
     while True:
-        play_red()
-        play_green()
         traffic_light.set_color(Color.RED)
-        halt()
+        try:
+            wait_till_detection(9, 1)
+        except Exception as e:
+            print(e)
+            return
+        play_green()
+        time.sleep(3)
+        play_red()
 
 def play_red():
     traffic_light.set_color(Color.RED)

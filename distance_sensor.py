@@ -9,7 +9,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
 
-DISTANCE_THRESHOLD = 500 #  in centimeters - closer than that means thaere's a detection
+DETECTION_DISTANCE = 500.0 #  in centimeters - closer than that means thaere's a detection
+ERROR_DISTANCE = 0
 
  
 #set GPIO direction (IN / OUT)
@@ -51,13 +52,23 @@ def measure():
 def is_detected():
     distance = measure()
     print(f'distance read={distance}')
-    if distance < 1:
+    if distance < ERROR_DISTANCE:
         raise Exception(f"bad reading of measurement senser: {distance}")
-    if distance < DISTANCE_THRESHOLD:
+    if distance < DETECTION_DISTANCE:
         return 1
     else:
         return -1
 
+
+def sensor_works():
+    try:
+        for _ in range(100):
+            is_detected()
+    except:
+        print('distance sensor failed')
+        return False
+    return True
+        
 
 def wait_till_detection(threshold, waiting_sec):
     detected = 0

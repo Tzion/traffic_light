@@ -47,6 +47,7 @@ def measure():
 
 def is_detected():
     distance = measure()
+    print(f'distance read={distance}')
     if distance < 1:
         raise Exception(f"bad reading of measurement senser: {distance}")
     if distance < 500:

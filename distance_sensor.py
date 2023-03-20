@@ -50,26 +50,29 @@ def is_detected():
     if distance < 1:
         raise Exception(f"bad reading of measurement senser: {distance}")
     if distance < 500:
-        return True
+        return 1
     else:
-        return False
+        return -1
 
 
 def wait_till_detection(threshold, waiting_sec):
     detected = 0
     while True:
         detected += is_detected()
+        print(f'wait_till_detection detected: {detected} out of {threshold}')
         time.sleep(waiting_sec)
         if detected > threshold:
             return True
+        if detected < 0:
+            detected = 0
 
     
-def test_wait_till_detection():
+def test_wait_till_detection(threshold, waiting_sec):
     try:
         while True:
-            wait = wait_till_detection(10, 1)
-            print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(1)
+            print(f'Waiting for {threshold} detections with waiting time {waiting_sec} sec in between)')
+            wait_till_detection(threshold, waiting_sec)
+            print("detection finished")
  
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
@@ -91,8 +94,5 @@ def test_measure_reads():
 
 
 if __name__ == '__main__':
-    threshold = 6
-    waiting_sec = 1
-    print(f'Waiting for {threshold} detection with waiting time of {waiting_sec})')
-    test_wait_till_detection(threshold, waiting_sec)
+    test_wait_till_detection(6, 1)
 

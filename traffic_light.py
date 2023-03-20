@@ -1,5 +1,6 @@
 from enum import Enum
 import RPi.GPIO as GPIO
+import random
 import time
 
 RED_PIN = 2
@@ -31,6 +32,13 @@ class TrafficLight:
         print(f'setting color to {color})')
         self.color = color
         set_gpios(color)
+    
+    def go_crazy(self):
+        initial_color = self.color
+        for _ in range(200):
+            time.sleep(0.1)
+            self.set_color(random.randint(0,1))
+        self.set_color(initial_color)
 
 def set_gpios(color_on):
     if color_on == Color.RED:

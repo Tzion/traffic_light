@@ -23,6 +23,7 @@ def run_flow_no_sensor():
     play_green()
     traffic_light.set_color(Color.RED)
     halt()
+    traffic_light.go_crazy()
 
 
 def run_flow_with_sensor():

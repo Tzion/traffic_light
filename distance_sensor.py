@@ -8,6 +8,9 @@ GPIO.setmode(GPIO.BCM)
 #set GPIO Pins
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
+
+DISTANCE_THRESHOLD = 500 #  in centimeters - closer than that means thaere's a detection
+
  
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
@@ -50,7 +53,7 @@ def is_detected():
     print(f'distance read={distance}')
     if distance < 1:
         raise Exception(f"bad reading of measurement senser: {distance}")
-    if distance < 500:
+    if distance < DISTANCE_THRESHOLD:
         return 1
     else:
         return -1

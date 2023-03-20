@@ -10,17 +10,20 @@ def setup():
     traffic_light = TrafficLight()
     media_manager = MediaManager()
 
+
 def run_flow():
     if sensor_works():
         run_flow_with_sensor()
     else:
         run_flow_no_sensor()
 
+
 def run_flow_no_sensor():
     play_red()
     play_green()
     traffic_light.set_color(Color.RED)
     halt()
+
 
 def run_flow_with_sensor():
     while True:
@@ -34,13 +37,16 @@ def run_flow_with_sensor():
         time.sleep(3)
         play_red()
 
+
 def play_red():
     traffic_light.set_color(Color.RED)
     media_manager.play(Color.RED)
 
+
 def play_green():
     traffic_light.set_color(Color.GREEN)
     media_manager.play(Color.GREEN)
+
 
 def halt():
     delay_sec = random.random() * 3 * 60

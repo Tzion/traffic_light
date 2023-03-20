@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
 
-DETECTION_DISTANCE = 500.0 #  in centimeters - closer than that means thaere's a detection
+DETECTION_DISTANCE = 444.0 #  in centimeters - closer than that means thaere's a detection
 ERROR_DISTANCE = 0
 
  

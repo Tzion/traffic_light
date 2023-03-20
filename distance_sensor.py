@@ -54,13 +54,45 @@ def is_detected():
     else:
         return False
 
-def wait_till_detection(threshold, waiting):
+
+def wait_till_detection(threshold, waiting_sec):
+    detected = 0
     while True:
-        detected = 0
         detected += is_detected()
-        time.sleep(waiting)
+        time.sleep(waiting_sec)
         if detected > threshold:
             return True
 
-
     
+def test_wait_till_detection():
+    try:
+        while True:
+            wait = wait_till_detection(10, 1)
+            print ("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
+ 
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()
+    
+
+def test_measure_reads():
+    try:
+        while True:
+            dist = measure()
+            print ("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
+ 
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()
+
+
+if __name__ == '__main__':
+    threshold = 6
+    waiting_sec = 1
+    print(f'Waiting for {threshold} detection with waiting time of {waiting_sec})')
+    test_wait_till_detection(threshold, waiting_sec)
+

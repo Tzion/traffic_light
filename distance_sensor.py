@@ -71,7 +71,7 @@ def sensor_works():
     return True
         
 
-@timeout_decorator(timeout=60*10)
+@timeout_decorator.timeout(timeout=60*10)
 def wait_till_detection(threshold, waiting_sec):
     detected = 0
     while True:

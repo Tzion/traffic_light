@@ -1,5 +1,5 @@
-#Libraries
 import RPi.GPIO as GPIO
+from enum import Enum
 import time
  
 #GPIO Mode (BOARD / BCM)
@@ -13,7 +13,7 @@ GPIO_ECHO = 24
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
  
-def distance():
+def measure():
     FunctionStartTime = time.time()
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
@@ -44,14 +44,23 @@ def distance():
  
     return distance
  
-if __name__ == '__main__':
-    try:
-        while True:
-            dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(1)
- 
-        # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-        print("Measurement stopped by User")
-        GPIO.cleanup()
+
+def is_detected():
+    distance = measure()
+    if distance < 1:
+        raise Exception(f"bad reading of measurement senser: {distance}")
+    if distance < 500:
+        return True
+    else:
+        return False
+
+def wait_till_detection(threshold, waiting):
+    while True:
+        detected = 0
+        detected += is_detected()
+        time.sleep(waiting)
+        if detected > threshold:
+            return True
+
+
+    

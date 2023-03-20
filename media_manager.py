@@ -38,7 +38,12 @@ class RaspberyPlayer():
     
     def play_track(track):
         print(f'playing track {track}')
-        pygame.mixer.init()
+        freq = 44100    # audio CD quality
+        bitsize = -16   # unsigned 16 bit
+        channels = 2    # 1 is mono, 2 is stereo
+        buffer = 2048   # number of samples (experiment to get right sound)
+        pygame.mixer.init(freq, bitsize, channels, buffer)
+        pygame.mixer.music.set_volume(1.0)
         pygame.mixer.music.load(track)
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy():

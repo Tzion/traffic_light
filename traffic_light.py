@@ -29,15 +29,15 @@ class TrafficLight:
         
     
     def set_color(self, color: Color):
-        print(f'setting color to {color})')
+        print(f'setting color to {color}')
         self.color = color
         set_gpios(color)
     
     def go_crazy(self):
+        print('crazy mode')
         initial_color = self.color
-        for _ in range(200):
-            time.sleep(0.1)
-            self.set_color(random.randint(0,1))
+        for _ in range(60):
+            self.set_color(Color.GREEN if random.randint(0,1) else Color.RED)
         self.set_color(initial_color)
 
 def set_gpios(color_on):

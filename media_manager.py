@@ -9,28 +9,25 @@ MEDIA_LIB = "./media"
 class MediaManager:
 
     def __init__(self, lib = MEDIA_LIB):
-        reds = self.load_files(lib + "/red")
-        greens = self.load_files(lib + "/green")
-        self.tracks = [couple for couple in zip(reds, greens)]
-        self.cur_tracks = self.pick_track()
+        self.reds = self.load_files(lib + "/red")
+        self.greens = self.load_files(lib + "/green")
 
     def load_files(self, path):
         files = [join(path,f) for f in listdir(path) if isfile(join(path, f))]
         files.sort()
         print(f'{len(files)} files were loaded from {path}')
         return files
-
-    def pick_track(self):
-        return random.sample(self.tracks, 1)[0]
     
     def play(self, color: Color):
-        if not self.cur_tracks or not self.cur_tracks[color.value]:
-            self.cur_tracks = self.pick_track()
         try:
-            track = self.cur_tracks[color.value]
+            if color == Color.GREEN:
+                track = random.sample(self.greens, 1)[0]
+            else:
+                track = random.sample(self.reds, 1)[0]
             RaspberyPlayer.play_track(track)
         except Exception as e:
             print(e)
+            RaspberyPlayer.stop_track(track)
         
         
 
@@ -49,5 +46,8 @@ class RaspberyPlayer():
         while pygame.mixer.music.get_busy():
             continue
         pass
+
+    def stop_track(track):
+        pygame.mixer.music.stop()
             
 

@@ -36,17 +36,17 @@ class TrafficLight:
     def go_crazy(self):
         print('crazy mode')
         initial_color = self.color
-        for _ in range(60):
+        for _ in range(120):
             self.set_color(Color.GREEN if random.randint(0,1) else Color.RED)
         self.set_color(initial_color)
 
 def set_gpios(color_on):
     if color_on == Color.RED:
         GPIO.output(RED_PIN, GPIO.HIGH)
-        time.sleep(0.4)
+        time.sleep(0.1)
         GPIO.output(GREEN_PIN, GPIO.LOW)
     if color_on == Color.GREEN:
         GPIO.output(GREEN_PIN, GPIO.HIGH)
-        time.sleep(0.4)
+        time.sleep(0.1)
         GPIO.output(RED_PIN, GPIO.LOW)
         

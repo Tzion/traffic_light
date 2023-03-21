@@ -19,24 +19,24 @@ def run_flow():
 
 
 def run_flow_no_sensor():
-    play_red()
-    play_green()
     traffic_light.set_color(Color.RED)
-    halt()
     traffic_light.go_crazy()
+    play_red()
+    halt()
+    play_green()
 
 
 def run_flow_with_sensor():
     while True:
-        traffic_light.set_color(Color.RED)
+        traffic_light.set_color(Color.GREEN)
         try:
             wait_till_detection(9, 1)
         except Exception as e:
             print(e)
             return
-        play_green()
-        time.sleep(3)
         play_red()
+        time.sleep(8)
+        play_green()
 
 
 def play_red():

@@ -30,7 +30,7 @@ def run_flow_with_sensor():
     while True:
         traffic_light.set_color(Color.GREEN)
         try:
-            wait_till_detection(20, 0.5)
+            wait_till_detection(16, 0.5)
         except Exception as e:
             print(e)
             return

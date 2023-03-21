@@ -33,7 +33,6 @@ def run_flow_with_sensor():
             wait_till_detection(16, 0.5)
         except Exception as e:
             print(e)
-            return
         play_red()
         time.sleep(8)
         play_green()
